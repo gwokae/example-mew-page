@@ -1,0 +1,101 @@
+@import "libs/elements.less";
+
+body {
+  background: #000;
+  color: #fff;
+  > header, > footer {
+    background: #322;
+  }
+  > header {
+    > div > h1 {
+      margin: 0;
+      margin-top: 10px;
+      width:950px;height:120px;background-position:-0px -291px;background-repeat:no-repeat;
+      background-image:url('http://farm7.staticflickr.com/6045/6298982782_fe3bae479c_b.jpg');
+      > a {
+        text-decoration: none;
+        color: #fff;
+        left: 30px;
+        top: 5px;
+        position: relative;
+        &:visited {
+          color: #fff;
+        }
+        &:hover {
+          color: #EEE;
+          text-shadow: 0px 3px 6px #333;
+        }
+      }
+    }
+  }
+}
+nav {
+  
+  > ul {
+    > li{
+      display: inline-block;
+      float: left;
+      border: solid 1px #666;
+      border-left: 0px;
+      border-bottom: 0px;
+      padding: 3px 10px;
+      margin: 10px 0px;
+      position: relative;
+      background: #322;
+      &:first-child {
+        .border-radius( 0 , 0 , 15px, 15px);
+        border-left: solid 1px #666;
+      }
+      &:last-child, &.last {
+        .border-radius(15px, 15px, 0 , 0 );
+      }
+      &.l2nav{
+        display: none;
+        &.open{
+          display: inline;
+          .gradient(transparent,#322 ,#523636);
+        }
+      }
+      &.arrow {
+        padding-left: 23px;
+        &:after{
+          content:"";
+          position: absolute;
+          top: 0;
+          left: -1px;
+          width: 0;
+          height: 0;
+          border-top: 15px solid transparent;
+          border-bottom: 15px solid transparent;
+          border-left: 15px solid #322;
+ 
+        }
+      }
+      a {
+        text-decoration: none;
+        color:#666;
+        font-weight: bold;
+        &:visited {
+          color:#666;
+        }
+        &:hover, &.selected {
+          color:#fff;
+        }
+      }
+    }
+  }
+}
+div{
+  &.profile {
+    float: right;
+    padding: 10px 0 10px 25px;
+    position: relative;
+    right: 5px;
+    top: 10px;
+    > span {
+      display: block;
+      font-size: 23px;
+      text-align: center;
+    }
+  }
+}

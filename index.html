@@ -1,0 +1,66 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/libs/960_24_col.css">
+  <link rel="stylesheet" href="css/libs/h5bp.css">
+  <!--  use uncomplied less style -->
+  <link rel="stylesheet/less" type="text/css" href="css/style.less">
+
+  <script src="js/libs/modernizr-2.5.3.min.js"></script>
+  <script src="js/libs/less-1.2.2.min.js"></script>
+  <script src="conf/conf.js"></script>
+</head>
+<body>
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  <header>
+    <div class="container_24">
+      <h1>
+        <a href="#home">Leonard Lin's World</a>
+      </h1>
+      <nav class="grid_24">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li class="last"><a href="#photo">Photos</a>
+          <li class="l2nav" name="photo"><a href="#photo/all">All Photos</a></li>
+          <li class="l2nav" name="photo"><a href="#photo/cat">Cat</a></li>
+          <li class="l2nav" name="photo"><a href="#photo/flower">Flower</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div id="content" role="main" class="container_24"></div>
+  <footer>
+    <div class="container_24">
+      <p>&copy; Copyright by Kuo-kai, Leonard, Lin 2012.</p>
+    </div>
+  </footer>
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+  
+  <script src="js/script.js"></script>
+
+  <script>
+    $(function(){
+      if(mp.site.google_analytics){
+        var _gaq=[['_setAccount',mp.site.google_analytics],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+      }
+    });
+  </script>
+</body>
+</html>
