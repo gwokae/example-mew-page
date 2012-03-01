@@ -17,7 +17,7 @@ var flickerManager = (function(){
     },
     getUrl: function(options){
       var url = this.baseUrl;
-      url += "?format=json"
+      url += "?format=json&jsoncallback=?&tagmode=any"
       if(options!=null){
         if(options.uid){
           url += ((options.uid instanceof Array)?"&ids=":"&id=") +this.join(options.uid);
@@ -26,12 +26,21 @@ var flickerManager = (function(){
           url += "&tags=" + this.join(options.tags);
         }
       }
-      
+      return url;
+    },
+    giveMeBigImg: function(data){
+      for(var i = 0 ; i < data.items.length ; i++){
+        var link = data.items[i].media.m;
+        data.items[i].media.b = link.replace("_m.jpg","_b.jpg")
+      }
+      return data;
     }
   }
   return {
     getJSON : function(options, callback){
+      console.log(_private.getUrl(options));
       $.getJSON(_private.getUrl(options),function(data){
+        data = _private.giveMeBigImg(data);
         callback(data);
       });
     }
@@ -39,7 +48,12 @@ var flickerManager = (function(){
 })();
 
 var contentManager = (function(){
-  var _private = {};
+  var _private = {
+    tagMapping : {
+      "cat" : ["貓咪","大咪"],
+      "flower" : ["小花","花",]
+    }
+  };
   return {
     loadPage : function(){
       var main = $("#content"), level1re = /^#(home|about)$/ ,level2re = /^#(photo)\/?(all|cat|flower)?$/;
@@ -57,11 +71,27 @@ var contentManager = (function(){
         var m = document.location.hash.match(level2re);
         $("header nav").find("a").removeClass("selected").filter("[href='#" + m[1] + "']").addClass("selected").parent("li").removeClass("last");
         $("header nav ul").find(".l2nav").filter("[name='"+m[1]+"']").addClass('open').filter(":first").addClass("arrow"); 
-        if(m[2]==undefined){
-          
-        }else{
-          
+        
+        var selectedSubCate = ((m[2]==undefined) ? "all":m[2]);
+        $("header nav").find("a").filter("[href='#" + m[1] + "/" + selectedSubCate + "']").addClass("selected");
+        var flickrOptions = { uid: "82749119@N00" };
+        if(selectedSubCate != "all"){
+          flickrOptions.tags = _private.tagMapping[selectedSubCate];
         }
+        //load images
+        flickerManager.getJSON(flickrOptions, function(data){
+          main.html("");
+          for(var i = 0 ; i < data.items.length ; i++){
+            var item = "<a class='fancybox' rel='gallery1' href='" + data.items[i].media.b  + "' title='" + data.items[i].title + "'>" +
+              "<img src='" + data.items[i].media.m + "' alt='"+ data.items[i].title +"' /></a>"
+            main.append( item );
+          }
+          $(".fancybox").fancybox({
+            openEffect  : 'none',
+            closeEffect : 'none'
+          });
+        });
+        
       }else{
         main.html("<div class='loading'>Page Not Found!</div>");
       }
